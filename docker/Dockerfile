@@ -25,8 +25,10 @@ RUN \
   wget -qO statsd.tar.gz https://github.com/etsy/statsd/archive/v$VERSION.tar.gz && \
   tar -xzf statsd.tar.gz && \
   mv statsd-$VERSION statsd && \
-  rm -f statsd.tar.gz && \
+  rm -f statsd.tar.gz && mkdir /etc/statsd && \
   wget -qO statsd/backends/wavefront.js https://raw.githubusercontent.com/wavefrontHQ/StatsD/master/backends/wavefront.js
+
+ADD config.js /etc/statsd/config.js
 
 EXPOSE \
   # StatsD UDP
