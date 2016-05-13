@@ -13,7 +13,7 @@ RUN \
 RUN \
   wget -qO - https://deb.nodesource.com/setup_4.x | bash - && \
   apt-get -qq install -y nodejs && \
-  apt-get -qq clean -y && rm -rf /var/lib/apt/lists/* && \
+  apt-get -qq clean -y && rm -rf /var/lib/apt/lists/*
   
 # StatsD Version
 ENV VERSION v0.8.0
