@@ -7,11 +7,14 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install system dependencies
 RUN \
-  wget -qO - https://deb.nodesource.com/setup_4.x | bash - && \
   apt-get -qq update -y && \
-  apt-get -qq install -y nodejs && \
-  apt-get -qq clean -y && rm -rf /var/lib/apt/lists/*
+  apt-get -qq install -y wget git
 
+RUN \
+  wget -qO - https://deb.nodesource.com/setup_4.x | bash - && \
+  apt-get -qq install -y nodejs && \
+  apt-get -qq clean -y && rm -rf /var/lib/apt/lists/* && \
+  
 # StatsD Version
 ENV VERSION v0.8.0
 
@@ -24,9 +27,6 @@ RUN \
   mv statsd-$VERSION statsd && \
   rm -f statsd.tar.gz && \
   wget -qO statsd/backends/wavefront.js https://raw.githubusercontent.com/wavefrontHQ/StatsD/master/backends/wavefront.js
-
-# StatsD
-COPY conf/config.js /etc/statsd/config.js
 
 EXPOSE \
   # StatsD UDP
