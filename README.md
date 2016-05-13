@@ -4,7 +4,7 @@
 
 The Wavefront StatsD backend emits StatsD metrics to Wavefront. It also extends StatsD by allowing point tags.
 
-[![logo](http://dockeri.co/image/marcellodesales/wavefront-statsd)](https://registry.hub.docker.com/u/marcellodesales/wavefront-statsd)
+[![logo](http://dockeri.co/image/marcellodesales/wavefront-statsd)](https://hub.docker.com/u/marcellodesales/wavefront-statsd)
 
 ## Installation
 This readme assumes you've already downloaded [statsd](https://github.com/etsy/statsd) and have a basic understanding. 
