@@ -16,7 +16,7 @@ RUN \
   apt-get -qq clean -y && rm -rf /var/lib/apt/lists/*
   
 # StatsD Version
-ENV VERSION v0.8.0
+ENV VERSION 0.8.0
 
 # Install StatsD
 RUN \
