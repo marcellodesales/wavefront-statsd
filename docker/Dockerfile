@@ -2,7 +2,7 @@ FROM  mhart/alpine-node:0.10.41
 MAINTAINER Marcello_deSales@intuit.com
 
 RUN \
-  apk --update add python make gcc g++ bash && \
+  apk --update add python make gcc g++ && \
   rm -rf /var/cache/apk/* && \
   USER=root npm install --global statsd && \
   apk --purge del python make gcc g++
