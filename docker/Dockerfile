@@ -1,34 +1,13 @@
-FROM ubuntu
-
-WORKDIR /opt
-
-# This suppresses a bunch of annoying warnings from debconf
-ENV DEBIAN_FRONTEND noninteractive
-
-# Install system dependencies
-RUN \
-  apt-get -qq update -y && \
-  apt-get -qq install -y wget git
+FROM  mhart/alpine-node:0.10.41
+MAINTAINER Marcello_deSales@intuit.com
 
 RUN \
-  wget -qO - https://deb.nodesource.com/setup_4.x | bash - && \
-  apt-get -qq install -y nodejs && \
-  apt-get -qq clean -y && rm -rf /var/lib/apt/lists/*
-  
-# StatsD Version
-ENV VERSION 0.8.0
+  apk --update add python make gcc g++ bash && \
+  rm -rf /var/cache/apk/* && \
+  USER=root npm install --global statsd && \
+  apk --purge del python make gcc g++
 
-# Install StatsD
-RUN \
-  mkdir -p /opt && \
-  cd /opt && \
-  wget -qO statsd.tar.gz https://github.com/etsy/statsd/archive/v$VERSION.tar.gz && \
-  tar -xzf statsd.tar.gz && \
-  mv statsd-$VERSION statsd && \
-  rm -f statsd.tar.gz && mkdir /etc/statsd && \
-  wget -qO statsd/backends/wavefront.js https://raw.githubusercontent.com/wavefrontHQ/StatsD/master/backends/wavefront.js
-
-ADD config.js /etc/statsd/config.js
+WORKDIR /usr/lib/node_modules/statsd/
 
 EXPOSE \
   # StatsD UDP
@@ -36,7 +15,7 @@ EXPOSE \
   # StatsD Admin
   8126
 
-VOLUME ["/etc/statsd"]
+CMD ["/usr/bin/node", "stats.js", "config.js"]
 
-# Launch StatsD
-CMD ["/usr/bin/node", "/opt/statsd/stats.js", "/etc/statsd/config.js"]
+ADD ./config/config.js /usr/lib/node_modules/statsd/config.js
+ADD ./config/wavefront.js /usr/lib/node_modules/statsd/backends/wavefront.js
