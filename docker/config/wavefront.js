@@ -174,6 +174,9 @@ var backendStatus = function wavefrontStatus(writeCb) {
 };
 
 exports.init = function wavefrontInit(startup_time, config, events) {
+  console.log("===~~~~~.... WAVEFRONT SETTINGS .....~~~~~=====");
+  console.log(config);
+  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
   debug = config.debug;
   wavefrontHost = config.wavefrontHost;
   wavefrontPort = config.wavefrontPort;
