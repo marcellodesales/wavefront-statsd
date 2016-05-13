@@ -69,7 +69,6 @@ You can use Docker-compose 1.7.x+ with this and bootstrap everything together:
 
 ```
 # docker-compose -f services/monitoring.yml up -d
-WARNING: Found orphan containers (services_newrelic-agent_1, services_splunkforwarder_1) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
 Creating services_statsd_1
 Creating services_cadvisor_1
 ```
