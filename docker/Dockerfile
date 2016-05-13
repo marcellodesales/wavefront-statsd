@@ -16,6 +16,3 @@ EXPOSE \
   8126
 
 CMD ["/usr/bin/node", "stats.js", "config.js"]
-
-ADD ./config/config.js /usr/lib/node_modules/statsd/config.js
-ADD ./config/wavefront.js /usr/lib/node_modules/statsd/backends/wavefront.js
