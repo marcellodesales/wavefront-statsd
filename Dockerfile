@@ -9,8 +9,8 @@ RUN \
 
 WORKDIR /usr/lib/node_modules/statsd/
 
-ADD ./config/config.js /usr/lib/node_modules/statsd/config.js
-ADD ./config/wavefront.js /usr/lib/node_modules/statsd/backends/wavefront.js
+ADD ./config.js /usr/lib/node_modules/statsd/config.js
+ADD ./backends/wavefront.js /usr/lib/node_modules/statsd/backends/wavefront.js
 
 EXPOSE \
   # StatsD UDP
